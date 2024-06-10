@@ -80,11 +80,11 @@ st.title("Sudoku Oluşturma ve Çözme Uygulaması")
 
 if st.button("Yeni Sudoku Oluştur"):
     board = create_sudoku_board()
-    solved_board = board.copy()  # Cevabı göstermek için bir kopya oluştur
-    solve_sudoku(solved_board)  # Sudoku bulmacasını çöz
+    solved_board = board.copy()  # Make a copy to reveal the answer
+    solve_sudoku(solved_board)  # Solve the Sudoku puzzle
     st.write("Yeni Sudoku Tahtası:")
     st.write(board)
-    st.write("Çözülen Sudoku Tahtası:")  # Çözülmüş bulmacayı göster
+    st.write("Çözülen Sudoku Tahtası:")  # Show the solved puzzle
     st.write(solved_board)
     buf = plot_sudoku(board, "Yeni Sudoku")
     st.download_button("Sudoku'yu İndir (PNG)", buf, "sudoku.png")
@@ -95,7 +95,7 @@ if uploaded_file is not None:
     sudoku_array = np.load(uploaded_file)
     st.write("Yüklenen Sudoku Tahtası:")
     st.write(sudoku_array)
-    solved_board = sudoku_array.copy()  # Cevabı göstermek için bir kopya oluştur
-    solve_sudoku(solved_board)  # Sudoku bulmacasını çöz
-    st.write("Çözülen Sudoku Tahtası:")  # Çözülmüş bulmacayı göster
+    solved_board = sudoku_array.copy()  # Make a copy to reveal the answer
+    solve_sudoku(solved_board)  # Solve the Sudoku puzzle
+    st.write("Çözülen Sudoku Tahtası:")  # Show the solved puzzle
     st.write(solved_board)
