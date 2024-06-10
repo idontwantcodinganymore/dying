@@ -90,7 +90,7 @@ if st.button("Yeni Sudoku Oluştur"):
 uploaded_file = st.file_uploader("Bir Sudoku Dosyası Yükleyin (.npy formatında)", type="npy")
 
 if uploaded_file is not None:
-    sudoku_array = np.load(uploaded_file)
+    sudoku_array = np.load(uploaded_file, allow_pickle=True)
     st.write("Yüklenen Sudoku Tahtası:")
     st.write(sudoku_array)
     solved_board = sudoku_array.copy()  # Make a copy to reveal the answer
