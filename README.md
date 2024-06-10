@@ -76,26 +76,30 @@ def plot_sudoku(board, title="Sudoku"):
     buf.seek(0)
     return buf
 
-st.title("Sudoku Oluşturma ve Çözme Uygulaması")
+def main():
+    st.title("Sudoku Oluşturma ve Çözme Uygulaması")
 
-if st.button("Yeni Sudoku Oluştur"):
-    board = create_sudoku_board()
-    solved_board = board.copy()  # Make a copy to reveal the answer
-    solve_sudoku(solved_board)  # Solve the Sudoku puzzle
-    st.write("Yeni Sudoku Tahtası:")
-    st.write(board)
-    st.write("Çözülen Sudoku Tahtası:")  # Show the solved puzzle
-    st.write(solved_board)
-    buf = plot_sudoku(board, "Yeni Sudoku")
-    st.download_button("Sudoku'yu İndir (PNG)", buf, "sudoku.png")
+    if st.button("Yeni Sudoku Oluştur"):
+        board = create_sudoku_board()
+        solved_board = board.copy()  # Make a copy to reveal the answer
+        solve_sudoku(solved_board)  # Solve the Sudoku puzzle
+        st.write("Yeni Sudoku Tahtası:")
+        st.write(board)
+        st.write("Çözülen Sudoku Tahtası:")  # Show the solved puzzle
+        st.write(solved_board)
+        buf = plot_sudoku(board, "Yeni Sudoku")
+        st.download_button("Sudoku'yu İndir (PNG)", buf, "sudoku.png")
 
-uploaded_file = st.file_uploader("Bir Sudoku Dosyası Yükleyin (.npy formatında)", type="npy")
+    uploaded_file = st.file_uploader("Bir Sudoku Dosyası Yükleyin (.npy formatında)", type="npy")
 
-if uploaded_file is not None:
-    sudoku_array = np.load(uploaded_file)
-    st.write("Yüklenen Sudoku Tahtası:")
-    st.write(sudoku_array)
-    solved_board = sudoku_array.copy()  # Make a copy to reveal the answer
-    solve_sudoku(solved_board)  # Solve the Sudoku puzzle
-    st.write("Çözülen Sudoku Tahtası:")  # Show the solved puzzle
-    st.write(solved_board)
+    if uploaded_file is not None:
+        sudoku_array = np.load(uploaded_file)
+        st.write("Yüklenen Sudoku Tahtası:")
+        st.write(sudoku_array)
+        solved_board = sudoku_array.copy()  # Make a copy to reveal the answer
+        solve_sudoku(solved_board)  # Solve the Sudoku puzzle
+        st.write("Çözülen Sudoku Tahtası:")  # Show the solved puzzle
+        st.write(solved_board)
+
+if __name__ == "__main__":
+    main()
